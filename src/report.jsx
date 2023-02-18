@@ -1,12 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Navbar from "react-bootstrap/Navbar";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Table from "react-bootstrap/Table";
+import { Container, Navbar, Form, Row, Col, Card, Table, Image } from "react-bootstrap";
 import axios from "axios";
 import Common from "./common";
 const BASE_URL = Common.API_URL;
@@ -20,7 +14,9 @@ export default class report extends Component {
     district: [],
   };
   getData = async () => {
-    if (this.state.zipcode.length < 5) return false;
+    if (this.state.zipcode.length < 5) {
+      return false
+    };
     try {
         await axios
         .get(`${BASE_URL}/${this.state.zipcode}`)
@@ -59,10 +55,13 @@ export default class report extends Component {
     const { district } = this.state;
     return (
       <div>
-        <Navbar bg="primary" variant="dark">
+        <Navbar bg="secondary" variant="dark">
           <Container>
             <Navbar.Brand href="#">ค้นหาเลขไปรษณีย์</Navbar.Brand>
-            <div style={{ fontSize: "1.2rem", fontWeight: 500, color: "#fff" }}>นายปรินทร์ ตรีเอกานุภาพ, รหัสนักศึกษา : 65130273</div>
+            <div style={{display: "flex", alignItems: "center"}}>
+              <Image src="https://avatars.githubusercontent.com/u/125713570?s=400&u=57d4d30f3fca77cdbfc13e2c47ca3384a242016b&v=4" roundedCircle thumbnail style={{ width: "80px", marginRight: "20px" }} />
+              <p style={{ fontSize: "1.2rem", fontWeight: 500, color: "#fff", margin: 0 }}>รหัสนักศึกษา : 65130273, นายปรินทร์ ตรีเอกานุภาพ</p>
+            </div>
           </Container>
         </Navbar>
         <Container>
